@@ -7,7 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="WeatherForecast.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AuctionCarRegistry\AuctionCarRegistry.csproj" />
+    <ProjectReference Include="..\CarAuctionCommon\CarAuctionCommon.csproj" />
+    <ProjectReference Include="..\CarAuctionServices\CarAuctionServices.csproj" />
   </ItemGroup>
 
 </Project>

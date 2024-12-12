@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35431.28
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarAuctionProj", "CarAuctionProj\CarAuctionProj.csproj", "{B9DF3591-7AB2-4FEA-AD49-FE385419F65F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarAuctionProj", "CarAuctionProj\CarAuctionProj.csproj", "{B9DF3591-7AB2-4FEA-AD49-FE385419F65F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarAuctionServices", "CarAuctionServices\CarAuctionServices.csproj", "{0F1E038C-1451-4C95-BFE8-5DC8C99C9926}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarAuctionDAL", "CarAuctionDAL\CarAuctionDAL.csproj", "{FD4A643C-FDFD-4270-B9B1-8E416965D219}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarAuctionCommon", "CarAuctionCommon\CarAuctionCommon.csproj", "{21991A79-D455-4201-A87D-61BB014BD3EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionCarRegistry", "AuctionCarRegistry\AuctionCarRegistry.csproj", "{C8F41EC5-4891-47AA-A3D9-29C8C3C776CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{B9DF3591-7AB2-4FEA-AD49-FE385419F65F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9DF3591-7AB2-4FEA-AD49-FE385419F65F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9DF3591-7AB2-4FEA-AD49-FE385419F65F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F1E038C-1451-4C95-BFE8-5DC8C99C9926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F1E038C-1451-4C95-BFE8-5DC8C99C9926}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F1E038C-1451-4C95-BFE8-5DC8C99C9926}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F1E038C-1451-4C95-BFE8-5DC8C99C9926}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD4A643C-FDFD-4270-B9B1-8E416965D219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD4A643C-FDFD-4270-B9B1-8E416965D219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD4A643C-FDFD-4270-B9B1-8E416965D219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD4A643C-FDFD-4270-B9B1-8E416965D219}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21991A79-D455-4201-A87D-61BB014BD3EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21991A79-D455-4201-A87D-61BB014BD3EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21991A79-D455-4201-A87D-61BB014BD3EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21991A79-D455-4201-A87D-61BB014BD3EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8F41EC5-4891-47AA-A3D9-29C8C3C776CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8F41EC5-4891-47AA-A3D9-29C8C3C776CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8F41EC5-4891-47AA-A3D9-29C8C3C776CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8F41EC5-4891-47AA-A3D9-29C8C3C776CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
