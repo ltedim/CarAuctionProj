@@ -1,7 +1,5 @@
 ﻿using CarAuctionCommon.Dtos;
-using CarAuctionCommon.Entities;
 using CarAuctionCommon.Interfaces;
-using System.Threading;
 
 namespace CarAuctionServices.Services
 {

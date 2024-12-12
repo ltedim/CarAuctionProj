@@ -1,5 +1,4 @@
 ﻿using CarAuctionCommon.Dtos;
-using CarAuctionCommon.Entities;
 
 namespace CarAuctionCommon.Interfaces
 {

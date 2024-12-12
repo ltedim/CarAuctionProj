@@ -1,6 +1,5 @@
 using AuctionCarRegistry;
 using CarAuctionCommon.Context;
-using CarAuctionCommon.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 internal class Program

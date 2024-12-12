@@ -1,5 +1,4 @@
 ﻿using CarAuctionCommon.Context;
-using CarAuctionCommon.Dtos;
 using CarAuctionCommon.Entities;
 using CarAuctionCommon.Interfaces;
 using Microsoft.EntityFrameworkCore;
