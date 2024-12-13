@@ -9,6 +9,7 @@ namespace AuctionCarRegistry
         public static IServiceCollection AddRepositories(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddScoped<IVehicleRepository, VehicleRepository>();
+            serviceCollection.AddScoped<IAuctionRepository, AuctionRepository>();
             return serviceCollection;
         }
     }

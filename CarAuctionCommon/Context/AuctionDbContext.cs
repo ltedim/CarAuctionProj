@@ -22,6 +22,7 @@ namespace CarAuctionCommon.Context
             modelBuilder.Entity<Vehicle>().HasData(car);
         }
 
-        public DbSet<Vehicle> Vehicle { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Auction> Auctions{ get; set; }
     }
 }

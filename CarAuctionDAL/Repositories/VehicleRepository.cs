@@ -9,12 +9,12 @@ namespace CarAuctionDAL.Repositories
     {
         public async Task<List<Vehicle>> GetAllAsync(CancellationToken cancellationToken)
         {
-            return await auctionDbContext.Vehicle.ToListAsync(cancellationToken);
+            return await auctionDbContext.Vehicles.ToListAsync(cancellationToken);
         }
 
         public async Task<Vehicle> AddAsync(Vehicle vehicle, CancellationToken cancellationToken)
         {
-            await auctionDbContext.Vehicle.AddAsync(vehicle, cancellationToken);
+            await auctionDbContext.Vehicles.AddAsync(vehicle, cancellationToken);
             await auctionDbContext.SaveChangesAsync(cancellationToken);
 
             return vehicle;

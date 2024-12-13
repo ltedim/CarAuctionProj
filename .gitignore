@@ -5,10 +5,7 @@ bin
 obj
 packages
 .vs
-CarAuctionProj/obj/project.nuget.cache
-CarAuctionProj/obj/project.assets.json
+.vs/CarAuctionProj/DesignTimeBuild
+.vs/CarAuctionProj/v17
+.vs/CarAuctionProj/obj
 CarAuctionProj/CarAuctionProj.csproj.user
-.vs/CarAuctionProj/v17/DocumentLayout.json
-.vs/CarAuctionProj/v17/DocumentLayout.backup.json
-.vs/CarAuctionProj/v17/.suo
-.vs/CarAuctionProj/DesignTimeBuild/.dtbcache.v2
