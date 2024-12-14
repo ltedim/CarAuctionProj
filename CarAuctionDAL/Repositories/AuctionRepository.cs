@@ -34,7 +34,7 @@ namespace CarAuctionDAL.Repositories
             {
                 return await auctionDbContext.Auctions.MaxAsync(a => a.Id, cancellationToken);
             }
-            catch (Exception ex)
+            catch
             {
                 return 0;
             }

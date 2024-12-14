@@ -23,7 +23,7 @@ namespace CarAuctionServices.Services
                 throw new ArgumentException("Year of the car should be higher than 1900.");
             }
 
-            if (vehicleDto.StartingBid > 0)
+            if (vehicleDto.StartingBid < 0)
             {
                 throw new ArgumentException("StartingBid should be higher than zero.");
             }
@@ -44,7 +44,7 @@ namespace CarAuctionServices.Services
                 newVehicle.Id = 1;
             }
 
-            newVehicle = await vehicleRepository.AddAsync(newVehicle, cancellationToken);
+            await vehicleRepository.AddAsync(newVehicle, cancellationToken);
 
             return newVehicle.ToVehicleDto();
         }
