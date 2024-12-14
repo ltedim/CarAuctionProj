@@ -1,7 +1,6 @@
-using AuctionCarRegistry;
+using CarAuctionRegistry;
 using CarAuctionCommon.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 

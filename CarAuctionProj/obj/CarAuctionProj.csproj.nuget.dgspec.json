@@ -4,12 +4,12 @@
     "C:\\Users\\Tedim\\Documents\\GitHub\\CarAuctionProj\\CarAuctionProj\\CarAuctionProj.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tedim\\Documents\\GitHub\\CarAuctionProj\\AuctionCarRegistry\\AuctionCarRegistry.csproj": {
+    "C:\\Users\\Tedim\\Documents\\GitHub\\CarAuctionProj\\AuctionCarRegistry\\CarAuctionRegistry.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tedim\\Documents\\GitHub\\CarAuctionProj\\AuctionCarRegistry\\AuctionCarRegistry.csproj",
-        "projectName": "AuctionCarRegistry",
-        "projectPath": "C:\\Users\\Tedim\\Documents\\GitHub\\CarAuctionProj\\AuctionCarRegistry\\AuctionCarRegistry.csproj",
+        "projectUniqueName": "C:\\Users\\Tedim\\Documents\\GitHub\\CarAuctionProj\\AuctionCarRegistry\\CarAuctionRegistry.csproj",
+        "projectName": "CarAuctionRegistry",
+        "projectPath": "C:\\Users\\Tedim\\Documents\\GitHub\\CarAuctionProj\\AuctionCarRegistry\\CarAuctionRegistry.csproj",
         "packagesPath": "C:\\Users\\Tedim\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Tedim\\Documents\\GitHub\\CarAuctionProj\\AuctionCarRegistry\\obj\\",
         "projectStyle": "PackageReference",
@@ -231,8 +231,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Tedim\\Documents\\GitHub\\CarAuctionProj\\AuctionCarRegistry\\AuctionCarRegistry.csproj": {
-                "projectPath": "C:\\Users\\Tedim\\Documents\\GitHub\\CarAuctionProj\\AuctionCarRegistry\\AuctionCarRegistry.csproj"
+              "C:\\Users\\Tedim\\Documents\\GitHub\\CarAuctionProj\\AuctionCarRegistry\\CarAuctionRegistry.csproj": {
+                "projectPath": "C:\\Users\\Tedim\\Documents\\GitHub\\CarAuctionProj\\AuctionCarRegistry\\CarAuctionRegistry.csproj"
               },
               "C:\\Users\\Tedim\\Documents\\GitHub\\CarAuctionProj\\CarAuctionCommon\\CarAuctionCommon.csproj": {
                 "projectPath": "C:\\Users\\Tedim\\Documents\\GitHub\\CarAuctionProj\\CarAuctionCommon\\CarAuctionCommon.csproj"
