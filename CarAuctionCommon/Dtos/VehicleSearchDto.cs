@@ -2,7 +2,7 @@
 
 namespace CarAuctionCommon.Dtos
 {
-    public record VehicleSearchDto(VehicleType? TypeId, string Manufacturer, string Model, int? Year)
+    public record VehicleSearchDto(VehicleType? TypeId, string? Manufacturer, string? Model, int? Year)
     {
     }
 }

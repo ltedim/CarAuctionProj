@@ -1,6 +1,9 @@
 using AuctionCarRegistry;
 using CarAuctionCommon.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 internal class Program
 {
@@ -14,9 +17,17 @@ internal class Program
         // Add services to the container.
 
         builder.Services.AddControllers();
+
+        builder.Services.AddControllersWithViews()
+                .AddJsonOptions(options =>
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(c => {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Car Auction", Version = "v1" });
+            c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, @"CarAuctionProj.xml"));
+        });
         builder.Services.AddDbContext<AuctionDbContext>(opt => opt.UseInMemoryDatabase("auctiondb"));
 
         var app = builder.Build();

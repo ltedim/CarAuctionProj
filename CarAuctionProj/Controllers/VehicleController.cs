@@ -9,7 +9,7 @@ namespace CarAuctionProj.Controllers
     public class VehicleController(IVehicleService vehicleService) : Controller
     {
         [HttpGet]
-        public async Task<List<VehicleDto>> GetFilteredAsync(VehicleSearchDto vehicleSearchDto, CancellationToken cancellationToken)
+        public async Task<List<VehicleDto>> GetFilteredAsync([FromQuery]VehicleSearchDto vehicleSearchDto, CancellationToken cancellationToken)
         {
             return await vehicleService.GetFilteredAsync(vehicleSearchDto, cancellationToken);
         }
