@@ -24,5 +24,6 @@ namespace CarAuctionCommon.Context
 
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Auction> Auctions{ get; set; }
+        public DbSet<Bid> Bids{ get; set; }
     }
 }

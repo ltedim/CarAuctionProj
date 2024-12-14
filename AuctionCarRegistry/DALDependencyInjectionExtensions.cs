@@ -10,6 +10,7 @@ namespace AuctionCarRegistry
         {
             serviceCollection.AddScoped<IVehicleRepository, VehicleRepository>();
             serviceCollection.AddScoped<IAuctionRepository, AuctionRepository>();
+            serviceCollection.AddScoped<IBidRepository, BidRepository>();
             return serviceCollection;
         }
     }

@@ -3,7 +3,7 @@ using CarAuctionCommon.Enums;
 
 namespace CarAuctionCommon.Dtos
 {
-    public record AuctionDto (int Id, int CarId, DateTime AuctionDateTime, AuctionStatus StatusId, decimal? WinningBid, DateTime AuctionEndScheduledDateTime, DateTime? AuctionEndDateTime)
+    public record AuctionDto (int Id, int CarId, DateTime AuctionDateTime, AuctionStatus StatusId, int? WinningBid, DateTime AuctionEndScheduledDateTime, DateTime? AuctionEndDateTime)
     {
         public Auction ToAuction()
         {

@@ -1,9 +1,10 @@
 ﻿using CarAuctionCommon.Dtos;
+using CarAuctionCommon.Enums;
 using CarAuctionCommon.Interfaces;
 
 namespace CarAuctionServices.Services
 {
-    public class AuctionService(IAuctionRepository auctionRepository) : IAuctionService
+    public class AuctionService(IAuctionRepository auctionRepository, IBidRepository bidRepository) : IAuctionService
     {
         public async Task<AuctionDto> AddAsync(AuctionDto auctionDto, CancellationToken cancellationToken)
         {
@@ -32,7 +33,7 @@ namespace CarAuctionServices.Services
             var lastId = await auctionRepository.GetMaxId(cancellationToken);
 
             newAuction.AuctionEndDateTime = null;
-            newAuction.StatusId = CarAuctionCommon.Enums.AuctionStatus.NotStarted;
+            newAuction.StatusId = AuctionStatus.NotStarted;
 
             if (result.Count > 0)
             {
@@ -54,16 +55,21 @@ namespace CarAuctionServices.Services
 
             if (auction == null)
             {
-                throw new InvalidOperationException("Auction Id is not valid.");
+                throw new ArgumentException("Auction Id is not valid.");
             }
             
-            if (auction.StatusId != CarAuctionCommon.Enums.AuctionStatus.Started)
+            if (auction.StatusId != AuctionStatus.Started)
             {
-                throw new InvalidOperationException("Auction no longer available to close.");
+                throw new ArgumentException("Auction no longer available to close.");
             }
 
-            auction.StatusId = CarAuctionCommon.Enums.AuctionStatus.Closed;
+            auction.StatusId = AuctionStatus.Closed;
             auction.AuctionEndDateTime = DateTime.UtcNow;
+            var maxBid = await bidRepository.GetMaxForAuctionIdAsync(id, cancellationToken);
+            if (maxBid != null)
+            {
+                auction.WinningBid = maxBid.Id;
+            }
 
             auction = await auctionRepository.UpdateAsync(auction, cancellationToken);
 
@@ -76,19 +82,47 @@ namespace CarAuctionServices.Services
 
             if (auction == null)
             {
-                throw new InvalidOperationException("Auction Id is not valid.");
+                throw new ArgumentException("Auction Id is not valid.");
             }
 
-            if(auction.StatusId != CarAuctionCommon.Enums.AuctionStatus.NotStarted)
+            if (auction.StatusId != AuctionStatus.NotStarted)
             {
-                throw new InvalidOperationException("Auction no longer available to start.");
+                throw new ArgumentException("Auction no longer available to start.");
             }
 
-            auction.StatusId = CarAuctionCommon.Enums.AuctionStatus.Started;
+            auction.StatusId = AuctionStatus.Started;
 
             auction = await auctionRepository.UpdateAsync(auction, cancellationToken);
 
             return auction.ToAuctionDto();
+        }
+
+        public async Task<BidDto> AddBidAsync(BidDto bidDto, CancellationToken cancellation)
+        {
+            var auction = await auctionRepository.FetchById(bidDto.AuctionId, cancellation);
+
+            if (auction == null)
+            {
+                throw new ArgumentException("Invalid auction.");
+            } 
+            else if(auction.StatusId != AuctionStatus.Started)
+            {
+                throw new ArgumentException("Auction is not available for bids.");
+            }
+
+            var maxBid = await bidRepository.GetMaxForAuctionIdAsync(auction.Id, cancellation);
+
+            if(maxBid != null && maxBid.BidValue > bidDto.BidValue)
+            {
+                throw new ArgumentException("Bid not valid.");
+            }
+
+            var newBid = bidDto.ToBid();
+            newBid.AuctionBidDateTime = DateTime.UtcNow;
+
+            await bidRepository.AddAsync(newBid, cancellation);
+
+            return newBid.ToBidDto();
         }
     }
 }

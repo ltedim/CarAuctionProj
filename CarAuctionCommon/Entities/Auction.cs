@@ -9,7 +9,7 @@ namespace CarAuctionCommon.Entities
         public int CarId { get; set; }
         public DateTime AuctionDateTime{ get; set; }
         public AuctionStatus StatusId { get; set; }
-        public decimal? WinningBid { get; set; }
+        public int? WinningBid { get; set; }
         public DateTime AuctionEndScheduledDateTime { get; set; }
         public DateTime? AuctionEndDateTime { get; set; }
 
