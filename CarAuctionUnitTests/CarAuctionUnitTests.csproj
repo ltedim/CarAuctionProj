@@ -18,6 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CarAuctionCommon\CarAuctionCommon.csproj" />
+    <ProjectReference Include="..\CarAuctionDAL\CarAuctionDAL.csproj" />
+    <ProjectReference Include="..\CarAuctionServices\CarAuctionServices.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="NUnit.Framework" />
   </ItemGroup>
 

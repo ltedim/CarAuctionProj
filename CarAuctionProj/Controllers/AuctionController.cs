@@ -61,9 +61,9 @@ namespace CarAuctionProj.Controllers
             }
         }
 
-        [Route("add-bid")]
+        [Route("place-bid")]
         [HttpPut]
-        public async Task<ActionResult<BidDto>> AddBid(BidDto bidDto, CancellationToken cancellationToken)
+        public async Task<ActionResult<BidDto>> PlaceBid(BidDto bidDto, CancellationToken cancellationToken)
         {
             try
             {

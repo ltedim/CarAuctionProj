@@ -5,13 +5,15 @@ VisualStudioVersion = 17.11.35431.28
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarAuctionProj", "CarAuctionProj\CarAuctionProj.csproj", "{B9DF3591-7AB2-4FEA-AD49-FE385419F65F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarAuctionServices", "CarAuctionServices\CarAuctionServices.csproj", "{0F1E038C-1451-4C95-BFE8-5DC8C99C9926}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarAuctionServices", "CarAuctionServices\CarAuctionServices.csproj", "{0F1E038C-1451-4C95-BFE8-5DC8C99C9926}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarAuctionDAL", "CarAuctionDAL\CarAuctionDAL.csproj", "{FD4A643C-FDFD-4270-B9B1-8E416965D219}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarAuctionDAL", "CarAuctionDAL\CarAuctionDAL.csproj", "{FD4A643C-FDFD-4270-B9B1-8E416965D219}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarAuctionCommon", "CarAuctionCommon\CarAuctionCommon.csproj", "{21991A79-D455-4201-A87D-61BB014BD3EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarAuctionCommon", "CarAuctionCommon\CarAuctionCommon.csproj", "{21991A79-D455-4201-A87D-61BB014BD3EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionCarRegistry", "AuctionCarRegistry\AuctionCarRegistry.csproj", "{C8F41EC5-4891-47AA-A3D9-29C8C3C776CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionCarRegistry", "AuctionCarRegistry\AuctionCarRegistry.csproj", "{C8F41EC5-4891-47AA-A3D9-29C8C3C776CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarAuctionUnitTests", "CarAuctionUnitTests\CarAuctionUnitTests.csproj", "{C9DBF576-CBA5-462F-8B3E-19EB933E1B8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{C8F41EC5-4891-47AA-A3D9-29C8C3C776CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8F41EC5-4891-47AA-A3D9-29C8C3C776CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8F41EC5-4891-47AA-A3D9-29C8C3C776CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9DBF576-CBA5-462F-8B3E-19EB933E1B8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9DBF576-CBA5-462F-8B3E-19EB933E1B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9DBF576-CBA5-462F-8B3E-19EB933E1B8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9DBF576-CBA5-462F-8B3E-19EB933E1B8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

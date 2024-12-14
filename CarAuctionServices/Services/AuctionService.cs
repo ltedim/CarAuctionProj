@@ -18,7 +18,7 @@ namespace CarAuctionServices.Services
                 throw new ArgumentException("Auction DateTime has to be later than today.");
             }
 
-            if (auctionDto.AuctionEndScheduledDateTime > DateTime.Now && auctionDto.AuctionEndScheduledDateTime > auctionDto.AuctionDateTime)
+            if (auctionDto.AuctionScheduledEndDateTime > DateTime.Now && auctionDto.AuctionScheduledEndDateTime > auctionDto.AuctionDateTime)
             {
                 throw new ArgumentException("Auction Scheduled End DateTime DateTime has to be later than today and later than Auction DateTime.");
             }

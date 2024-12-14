@@ -10,12 +10,12 @@ namespace CarAuctionCommon.Entities
         public DateTime AuctionDateTime{ get; set; }
         public AuctionStatus StatusId { get; set; }
         public int? WinningBid { get; set; }
-        public DateTime AuctionEndScheduledDateTime { get; set; }
+        public DateTime AuctionScheduledEndDateTime { get; set; }
         public DateTime? AuctionEndDateTime { get; set; }
 
         public AuctionDto ToAuctionDto()
         {
-            return new AuctionDto(Id, CarId, AuctionDateTime, StatusId, WinningBid, AuctionEndScheduledDateTime, AuctionEndDateTime );
+            return new AuctionDto(Id, CarId, AuctionDateTime, StatusId, WinningBid, AuctionScheduledEndDateTime, AuctionEndDateTime );
         }
     }
 }
