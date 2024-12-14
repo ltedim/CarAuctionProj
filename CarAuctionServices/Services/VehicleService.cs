@@ -5,10 +5,16 @@ namespace CarAuctionServices.Services
 {
     public class VehicleService(IVehicleRepository vehicleRepository) : IVehicleService
     {
-        public async Task<List<VehicleDto>> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<List<VehicleDto>> GetFilteredAsync(VehicleSearchDto? vehicleSearchDto, CancellationToken cancellationToken)
         {
-            var result = await vehicleRepository.GetAllAsync(cancellationToken);
-            return result.Select(v => v.ToVehicleDto()).ToList();
+            if(vehicleSearchDto == null)
+            {
+                var allVehivles = await vehicleRepository.GetAllAsync(cancellationToken);
+                return allVehivles.Select(v => v.ToVehicleDto()).ToList();
+            }
+
+            var filteredVehicles = await vehicleRepository.GetFilteredAsync(vehicleSearchDto.TypeId, vehicleSearchDto.Manufacturer, vehicleSearchDto.Model, vehicleSearchDto.Year, cancellationToken);
+            return filteredVehicles.Select(v => v.ToVehicleDto()).ToList();
         }
 
         public async Task<VehicleDto> AddAsync(VehicleDto vehicleDto, CancellationToken cancellationToken)
