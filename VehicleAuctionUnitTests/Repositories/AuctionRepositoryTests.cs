@@ -81,7 +81,7 @@ namespace VehicleAuctionUnitTests.Repositories
                 AuctionScheduledEndDateTime = DateTime.Now.AddDays(1)
             };
 
-            await auctionDbContextFaker.AddAsync(auction, CancellationToken.None);
+            await auctionDbContextFaker.Auctions.AddAsync(auction, CancellationToken.None);
 
             var auction2 = new Auction
             {
@@ -92,7 +92,7 @@ namespace VehicleAuctionUnitTests.Repositories
                 AuctionScheduledEndDateTime = DateTime.Now.AddDays(1)
             };
 
-            await auctionDbContextFaker.AddAsync(auction2, CancellationToken.None);
+            await auctionDbContextFaker.Auctions.AddAsync(auction2, CancellationToken.None);
         }
 
         #endregion
