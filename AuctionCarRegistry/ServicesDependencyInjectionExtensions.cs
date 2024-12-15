@@ -2,7 +2,7 @@
 using CarAuctionServices.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AuctionCarRegistry
+namespace CarAuctionRegistry
 {
     public static class ServicesDependencyInjectionExtensions
     {

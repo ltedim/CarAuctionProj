@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarAuctionDAL", "CarAuction
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarAuctionCommon", "CarAuctionCommon\CarAuctionCommon.csproj", "{21991A79-D455-4201-A87D-61BB014BD3EC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionCarRegistry", "AuctionCarRegistry\AuctionCarRegistry.csproj", "{C8F41EC5-4891-47AA-A3D9-29C8C3C776CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarAuctionRegistry", "AuctionCarRegistry\CarAuctionRegistry.csproj", "{C8F41EC5-4891-47AA-A3D9-29C8C3C776CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarAuctionUnitTests", "CarAuctionUnitTests\CarAuctionUnitTests.csproj", "{C9DBF576-CBA5-462F-8B3E-19EB933E1B8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarAuctionUnitTests", "CarAuctionUnitTests\CarAuctionUnitTests.csproj", "{C9DBF576-CBA5-462F-8B3E-19EB933E1B8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

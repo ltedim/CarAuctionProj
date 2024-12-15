@@ -15,10 +15,11 @@ namespace CarAuctionCommon.Entities
         public string Model { get; set; }
         public int Year { get; set; }
         public decimal StartingBid { get; set; }
+        public string Manufacturer { get; set; }
 
         public VehicleDto ToVehicleDto()
         {
-            return new VehicleDto (Id, Plate, TypeId, NumDoors, LoadCapacity, Model, Year, StartingBid);
+            return new VehicleDto (Id, Plate, TypeId, NumDoors, LoadCapacity, Model, Year, StartingBid, Manufacturer);
         }
     }
 }

@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AuctionCarRegistry\AuctionCarRegistry.csproj" />
+    <ProjectReference Include="..\AuctionCarRegistry\CarAuctionRegistry.csproj" />
     <ProjectReference Include="..\CarAuctionCommon\CarAuctionCommon.csproj" />
     <ProjectReference Include="..\CarAuctionServices\CarAuctionServices.csproj" />
   </ItemGroup>
