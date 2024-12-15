@@ -1,4 +1,4 @@
-# CarAuctionProj
+# VehicleAuctionProj
 
 <a href="support/Problem_Statement.pdf">
 Problem statement: Car Auction Management System
