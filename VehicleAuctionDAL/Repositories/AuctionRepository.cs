@@ -36,9 +36,12 @@ namespace VehicleAuctionDAL.Repositories
             await auctionDbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<bool> IsVehicleAuctionActive(int carId, CancellationToken cancellationToken)
+        public async Task<bool> IsVehicleAuctionActive(int vehicleId, CancellationToken cancellationToken)
         {
-            return await auctionDbContext.Auctions.AnyAsync(a => (a.StatusId == VehicleAuctionCommon.Enums.AuctionStatus.Started) && a.VehicleId == carId, cancellationToken);
+            // Assuming that if an Auction is closed for a vehicle we are able to allow the creation opf a new auction for the same vehicle
+            return await auctionDbContext.Auctions
+                .AnyAsync(a => (a.StatusId != VehicleAuctionCommon.Enums.AuctionStatus.Closed) 
+                    && a.VehicleId == vehicleId, cancellationToken);
         }
 
         public async Task<Auction?> FetchById(int id, CancellationToken cancellationToken)
