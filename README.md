@@ -14,6 +14,7 @@ Run/execute project **VehicleAuctionProj**, it will open a swagger page to help 
 - I decided to use several approches in the code or in the tests, mainlly to show different ways of code implementation.
 - VehicleAuctionUnitTests prooject has 24 unit tests to service layer and repository layer.
 - Tests were implemented with NUnit and Moq
+- To see the classes diagram and System Architecure please scroll down to see the images.
 
 # Classes Diagram
 ![Classes Diagram](support/class_diagram_v2.png)
