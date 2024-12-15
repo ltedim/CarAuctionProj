@@ -9,8 +9,8 @@ Notes
 - InMemory DBs does not allow transactions but I let the example code commented. <a href="https://codeopinion.com/testing-with-ef-core/">Info link<a>
 
 # Classes Diagram
-![Classes Diagram](support/class_diagram.png)
+![Classes Diagram](support/class_diagram_v2.png)
 
 # Development Architecture
-![Development Architecture](support/packages_diagram.png)
+![Development Architecture](support/packages_diagram_v2.png)
 
