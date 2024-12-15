@@ -18,14 +18,7 @@ namespace CarAuctionDAL.Repositories
 
         public async Task<Bid?> GetMaxForAuctionIdAsync(int auctionID, CancellationToken cancellationToken)
         {
-            var bids = await auctionDbContext.Bids.Where(b => b.AuctionId == auctionID).ToListAsync(cancellationToken);
-
-            if(bids == null || bids.Count == 0)
-            {
-                return null;
-            }
-
-            return bids.OrderByDescending(b => b.BidValue).FirstOrDefault();
+            return await auctionDbContext.Bids.Where(b => b.AuctionId == auctionID).OrderByDescending(b => b.BidValue).FirstOrDefaultAsync();
         }
     }
 }

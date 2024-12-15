@@ -63,14 +63,18 @@ namespace CarAuctionServices.Services
                 throw new ArgumentException("Auction no longer available to close.");
             }
 
+            // First close the auction in order to stop submiting more bids
             auction.StatusId = AuctionStatus.Closed;
             auction.AuctionEndDateTime = DateTime.UtcNow;
+            auction = await auctionRepository.UpdateAsync(auction, cancellationToken);
+
+            //Get the max bid and update auction
             var maxBid = await bidRepository.GetMaxForAuctionIdAsync(id, cancellationToken);
             if (maxBid != null)
             {
+                //WonBid
                 auction.WinningBid = maxBid.Id;
             }
-
             auction = await auctionRepository.UpdateAsync(auction, cancellationToken);
 
             return auction.ToAuctionDto();
@@ -110,6 +114,8 @@ namespace CarAuctionServices.Services
                 throw new ArgumentException("Auction is not available for bids.");
             }
 
+            // Improvement: Move this to a queue system have a single consumer per auction in order to accept bids in a FIFO way
+            // And prevent concurrency
             var maxBid = await bidRepository.GetMaxForAuctionIdAsync(auction.Id, cancellation);
 
             if(maxBid != null && maxBid.BidValue > bidDto.BidValue)
