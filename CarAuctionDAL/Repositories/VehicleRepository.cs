@@ -13,7 +13,7 @@ namespace CarAuctionDAL.Repositories
             return await auctionDbContext.Vehicles.ToListAsync(cancellationToken);
         }
 
-        public async Task<List<Vehicle>> GetFilteredAsync(VehicleType? typeId, string manufacturer, string model, int? year, CancellationToken cancellationToken)
+        public async Task<List<Vehicle>> GetFilteredAsync(VehicleType? typeId, string? manufacturer, string? model, int? year, CancellationToken cancellationToken)
         {
             var result = auctionDbContext.Vehicles.AsQueryable();
 
@@ -40,12 +40,32 @@ namespace CarAuctionDAL.Repositories
             return await result.ToListAsync(cancellationToken);
         }
 
-        public async Task<Vehicle> AddAsync(Vehicle vehicle, CancellationToken cancellationToken)
+        public async Task AddAsync(Vehicle vehicle, CancellationToken cancellationToken)
         {
+            // This method should use a transaction but InMemories DBs does not allow (but stays as an example to a relational db as SqlServer or MySql
+            // using var transaction = await auctionDbContext.Database.BeginTransactionAsync(cancellationToken);
+
+            // This is to simulate the auto increment of the DB
+            int id;
+            try
+            {
+                id = await auctionDbContext.Vehicles.MaxAsync(a => a.Id, cancellationToken);
+            }
+            catch
+            {
+                id = 0;
+            }
+            vehicle.Id = id + 1;
+
             await auctionDbContext.Vehicles.AddAsync(vehicle, cancellationToken);
             await auctionDbContext.SaveChangesAsync(cancellationToken);
 
-            return vehicle;
+            // await transaction.CommitAsync(cancellationToken);
+        }
+
+        public async Task<bool> PlateExistsAsync(string plate, CancellationToken cancellationToken)
+        {
+            return await auctionDbContext.Vehicles.AnyAsync(a => a.Plate == plate, cancellationToken);
         }
     }
 }

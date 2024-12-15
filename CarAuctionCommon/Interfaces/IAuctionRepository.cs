@@ -4,10 +4,9 @@ namespace CarAuctionCommon.Interfaces
 {
     public interface IAuctionRepository
     {
-        Task<Auction> AddAsync(Auction auction, CancellationToken cancellationToken);
-        Task<Auction> UpdateAsync(Auction auction, CancellationToken cancellationToken);
-        Task<List<Auction>> FetchActiveByCarId(int carId, CancellationToken cancellationToken);
-        Task<int> GetMaxId(CancellationToken cancellationToken);
+        Task AddAsync(Auction auction, CancellationToken cancellationToken);
+        Task UpdateAsync(Auction auction, CancellationToken cancellationToken);
+        Task<bool> IsVehicleAuctionActive(int carId, CancellationToken cancellationToken);
         Task<Auction?> FetchById(int id, CancellationToken cancellationToken);
     }
 }

@@ -9,7 +9,7 @@ namespace CarAuctionProj.Controllers
     public class AuctionController(IAuctionService auctionService) : Controller
     {
         [HttpPost]
-        public async Task<ActionResult<AuctionDto>> Post(AuctionDto auctionDto, CancellationToken cancellationToken)
+        public async Task<ActionResult<AuctionDto>> Post(AuctionDto auctionDto, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace CarAuctionProj.Controllers
 
         [Route("close")]
         [HttpPut]
-        public async Task<ActionResult<AuctionDto>> Close(int auctionId, CancellationToken cancellationToken)
+        public async Task<ActionResult<AuctionDto>> Close(int auctionId, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace CarAuctionProj.Controllers
 
         [Route("start")]
         [HttpPut]
-        public async Task<ActionResult<AuctionDto>> Start(int auctionId, CancellationToken cancellationToken)
+        public async Task<ActionResult<AuctionDto>> Start(int auctionId, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace CarAuctionProj.Controllers
 
         [Route("place-bid")]
         [HttpPut]
-        public async Task<ActionResult<BidDto>> PlaceBid(BidDto bidDto, CancellationToken cancellationToken)
+        public async Task<ActionResult<BidDto>> PlaceBid(BidDto bidDto, CancellationToken cancellationToken = default)
         {
             try
             {

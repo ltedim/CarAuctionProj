@@ -20,42 +20,9 @@ namespace CarAuctionUnitTests.Services
         }
 
         [Test]
-        public async Task AddVehicleTest()
+        public async Task PlateAlreadyExistsTest()
         {
-            vehicleRepositoryMock.Setup(v => v.GetAllAsync(CancellationToken.None)).ReturnsAsync(new List<Vehicle>());
-            var vehicle = new Vehicle{Id = It.IsAny<int>(), Plate = It.IsAny<string>(), NumDoors = It.IsAny<int>(), LoadCapacity = It.IsAny<int>(), 
-            Model = It.IsAny<string>(), TypeId  = It.IsAny<VehicleType>(), Year = It.IsAny<int>(), StartingBid = It.IsAny<int>(), Manufacturer = It.IsAny<string>()};
-            vehicleRepositoryMock.Setup(v => v.AddAsync(vehicle, CancellationToken.None)).ReturnsAsync(vehicle);
-
-            var vehicleDto = new VehicleDto(0, "123123FDFS", VehicleType.HatchBack, 4, 2000, "Ibiza", 2008, 2099, "Seat");
-
-            var newVehicle = await vehicleService.AddAsync(vehicleDto, CancellationToken.None);
-
-            Assert.IsTrue(newVehicle.VehicleId == 1);
-        }
-
-        [Test]
-        public async Task AddSecondVehicleTest()
-        {
-            vehicleRepositoryMock.Setup(v => v.GetAllAsync(CancellationToken.None)).ReturnsAsync(GetVehicleList());
-            var vehicle = new Vehicle{Id = It.IsAny<int>(), Plate = It.IsAny<string>(), NumDoors = It.IsAny<int>(), LoadCapacity = It.IsAny<int>(), 
-            Model = It.IsAny<string>(), TypeId  = It.IsAny<VehicleType>(), Year = It.IsAny<int>(), StartingBid = It.IsAny<int>()};
-            vehicleRepositoryMock.Setup(v => v.AddAsync(vehicle, CancellationToken.None)).ReturnsAsync(vehicle);
-
-            var vehicleDto = new VehicleDto(0, "324234WEFWEF", VehicleType.HatchBack, 4, 2000, "Ibiza", 2008, 2099, "Seat");
-
-            var newVehicle = await vehicleService.AddAsync(vehicleDto, CancellationToken.None);
-
-            Assert.IsTrue(newVehicle.VehicleId == 3);
-        }
-
-        [Test]
-        public async Task AddPlateExistsTest()
-        {
-            vehicleRepositoryMock.Setup(v => v.GetAllAsync(CancellationToken.None)).ReturnsAsync(GetVehicleList());
-            var vehicle = new Vehicle{Id = It.IsAny<int>(), Plate = It.IsAny<string>(), NumDoors = It.IsAny<int>(), LoadCapacity = It.IsAny<int>(), 
-            Model = It.IsAny<string>(), TypeId  = It.IsAny<VehicleType>(), Year = It.IsAny<int>(), StartingBid = It.IsAny<int>()};
-            vehicleRepositoryMock.Setup(v => v.AddAsync(vehicle, CancellationToken.None)).ReturnsAsync(vehicle);
+            vehicleRepositoryMock.Setup(v => v.PlateExistsAsync(It.IsAny<string>(),  CancellationToken.None)).ReturnsAsync(true);
 
             var vehicleDto = new VehicleDto(0, "123123FDFS", VehicleType.HatchBack, 4, 2000, "Ibiza", 2008, 2099, "Seat");
 
@@ -63,6 +30,39 @@ namespace CarAuctionUnitTests.Services
 
             Assert.IsInstanceOf<ArgumentException>(exception);
             Assert.That(exception.Message, Is.EqualTo("Vehicle already exists."));
+        }
+
+        [Test]
+        public async Task WrongNumberOfDoorsTest()
+        {
+            var vehicleDto = new VehicleDto(0, "123123FDFS", VehicleType.HatchBack, 0, 2000, "Ibiza", 2008, 2099, "Seat");
+
+            var exception = Assert.ThrowsAsync<ArgumentException>(async () => await vehicleService.AddAsync(vehicleDto, CancellationToken.None));
+
+            Assert.IsInstanceOf<ArgumentException>(exception);
+            Assert.That(exception.Message, Is.EqualTo("Number of doors has to be higher than zero."));
+        }
+
+        [Test]
+        public async Task WrongYearTest()
+        {
+            var vehicleDto = new VehicleDto(0, "123123FDFS", VehicleType.HatchBack, 3, 2000, "Ibiza", 2026, 2099, "Seat");
+
+            var exception = Assert.ThrowsAsync<ArgumentException>(async () => await vehicleService.AddAsync(vehicleDto, CancellationToken.None));
+
+            Assert.IsInstanceOf<ArgumentException>(exception);
+            Assert.That(exception.Message, Is.EqualTo("Year of the car should be higher than 1900."));
+        }
+
+        [Test]
+        public async Task WrongStartingBidTest()
+        {
+            var vehicleDto = new VehicleDto(0, "123123FDFS", VehicleType.HatchBack, 3, 2000, "Ibiza", 2020, 0, "Seat");
+
+            var exception = Assert.ThrowsAsync<ArgumentException>(async () => await vehicleService.AddAsync(vehicleDto, CancellationToken.None));
+
+            Assert.IsInstanceOf<ArgumentException>(exception);
+            Assert.That(exception.Message, Is.EqualTo("StartingBid should be higher than zero."));
         }
 
         #region Helpers

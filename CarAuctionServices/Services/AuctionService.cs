@@ -8,43 +8,33 @@ namespace CarAuctionServices.Services
     {
         public async Task<AuctionDto> AddAsync(AuctionDto auctionDto, CancellationToken cancellationToken)
         {
-            if(auctionDto.CarId > 0)
+            if(auctionDto.CarId <= 0)
             {
                 throw new ArgumentException("Car Id must be valid.");
             }
 
-            if (auctionDto.AuctionDateTime > DateTime.Now)
+            if (auctionDto.AuctionDateTime <= DateTime.Now)
             {
                 throw new ArgumentException("Auction DateTime has to be later than today.");
             }
 
-            if (auctionDto.AuctionScheduledEndDateTime > DateTime.Now && auctionDto.AuctionScheduledEndDateTime > auctionDto.AuctionDateTime)
+            if (auctionDto.AuctionScheduledEndDateTime <= auctionDto.AuctionDateTime)
             {
-                throw new ArgumentException("Auction Scheduled End DateTime DateTime has to be later than today and later than Auction DateTime.");
+                throw new ArgumentException("Auction Scheduled End DateTime has to be later than Auction DateTime.");
             }
 
-            var result = await auctionRepository.FetchActiveByCarId(auctionDto.CarId, cancellationToken);
-            if (result.Count != 0)
+            var isActive = await auctionRepository.IsVehicleAuctionActive(auctionDto.CarId, cancellationToken);
+            if (isActive)
             {
                 throw new ArgumentException("Auction for this vehicle already exists.");
             }
 
             var newAuction = auctionDto.ToAuction();
-            var lastId = await auctionRepository.GetMaxId(cancellationToken);
 
             newAuction.AuctionEndDateTime = null;
             newAuction.StatusId = AuctionStatus.NotStarted;
 
-            if (result.Count > 0)
-            {
-                newAuction.Id = lastId + 1;
-            }
-            else
-            {
-                newAuction.Id = 1;
-            }
-
-            newAuction = await auctionRepository.AddAsync(newAuction, cancellationToken);
+            await auctionRepository.AddAsync(newAuction, cancellationToken);
 
             return newAuction.ToAuctionDto();
         }
@@ -63,15 +53,18 @@ namespace CarAuctionServices.Services
                 throw new ArgumentException("Auction no longer available to close.");
             }
 
+            // 1st close auction
             auction.StatusId = AuctionStatus.Closed;
             auction.AuctionEndDateTime = DateTime.UtcNow;
+            await auctionRepository.UpdateAsync(auction, cancellationToken);
+
+            // 2nd update won bid, since auction is closed no new bid can be added
             var maxBid = await bidRepository.GetMaxForAuctionIdAsync(id, cancellationToken);
             if (maxBid != null)
             {
-                auction.WinningBid = maxBid.Id;
+                auction.WinBid = maxBid.Id;
+                await auctionRepository.UpdateAsync(auction, cancellationToken);
             }
-
-            auction = await auctionRepository.UpdateAsync(auction, cancellationToken);
 
             return auction.ToAuctionDto();
         }
@@ -92,7 +85,7 @@ namespace CarAuctionServices.Services
 
             auction.StatusId = AuctionStatus.Started;
 
-            auction = await auctionRepository.UpdateAsync(auction, cancellationToken);
+            await auctionRepository.UpdateAsync(auction, cancellationToken);
 
             return auction.ToAuctionDto();
         }
@@ -108,13 +101,6 @@ namespace CarAuctionServices.Services
             else if(auction.StatusId != AuctionStatus.Started)
             {
                 throw new ArgumentException("Auction is not available for bids.");
-            }
-
-            var maxBid = await bidRepository.GetMaxForAuctionIdAsync(auction.Id, cancellation);
-
-            if(maxBid != null && maxBid.BidValue > bidDto.BidValue)
-            {
-                throw new ArgumentException("Bid not valid.");
             }
 
             var newBid = bidDto.ToBid();

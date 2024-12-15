@@ -19,36 +19,28 @@ namespace CarAuctionServices.Services
 
         public async Task<VehicleDto> AddAsync(VehicleDto vehicleDto, CancellationToken cancellationToken)
         {
-            if(vehicleDto.NumDoors < 1)
+            if (vehicleDto.NumDoors < 1)
             {
                 throw new ArgumentException("Number of doors has to be higher than zero.");
             }
 
-            if (vehicleDto.Year < 1900 && vehicleDto.Year > DateTime.UtcNow.Year)
+            if (vehicleDto.Year < 1900 || vehicleDto.Year > DateTime.UtcNow.Year)
             {
                 throw new ArgumentException("Year of the car should be higher than 1900.");
             }
 
-            if (vehicleDto.StartingBid < 0)
+            if (vehicleDto.StartingBid <= 0)
             {
                 throw new ArgumentException("StartingBid should be higher than zero.");
             }
 
-            var result = await vehicleRepository.GetAllAsync(cancellationToken);
-            if(result.Any(v => v.Plate == vehicleDto.Plate))
+            var plateExists = await vehicleRepository.PlateExistsAsync(vehicleDto.Plate, cancellationToken);
+            if (plateExists)
             {
                 throw new ArgumentException("Vehicle already exists.");
             }
 
             var newVehicle = vehicleDto.ToVehicle();
-            if (result.Count > 0)
-            {
-                newVehicle.Id = result.Max(v => v.Id) + 1;
-            }
-            else
-            {
-                newVehicle.Id = 1;
-            }
 
             await vehicleRepository.AddAsync(newVehicle, cancellationToken);
 
